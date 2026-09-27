@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>KymmRetail</title>
 
-<!-- OG / meta untuk share kat WA/Telegram nampak lebih profesional -->
 <meta name="description" content="KymmRetail — servis peribadi, dikendalikan terus oleh Kym.">
 <meta property="og:title" content="KymmRetail">
 <meta property="og:description" content="Servis peribadi, dikendalikan terus oleh Kym.">
@@ -39,18 +38,16 @@
     font-weight:300;
     overflow-x:hidden;
     position:relative;
-    cursor:none; /* sembunyikan default cursor di desktop untuk glow custom */
+    cursor:none;
   }
   @media (hover:none){ body{ cursor:auto; } }
 
-  /* ---- scroll progress bar ---- */
   #progress{
     position:fixed;top:0;left:0;height:2px;width:0%;
     background:linear-gradient(90deg,transparent,var(--glow),transparent);
     z-index:80;transition:width .1s linear;
   }
 
-  /* ---- cursor glow trail ---- */
   #cursor-glow{
     position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;
     background:radial-gradient(circle, rgba(233,230,224,.55) 0%, transparent 70%);
@@ -100,7 +97,6 @@
   #intro{animation:introOut .8s ease 2.2s forwards;}
   @keyframes introOut{to{opacity:0;visibility:hidden;pointer-events:none;}}
 
-  /* ---- hero ---- */
   .hero{
     position:relative;z-index:2;min-height:100svh;
     display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -128,7 +124,7 @@
   .avatar-bg{
     position:absolute;inset:-120px -140px;display:flex;align-items:center;justify-content:center;
     pointer-events:none;overflow:visible;
-    transition:transform .15s ease-out; /* untuk parallax */
+    transition:transform .15s ease-out;
     will-change:transform;
   }
   .avatar-bg span{
@@ -169,8 +165,6 @@
     font-size:13.5px;color:var(--ink-dim);text-align:center;max-width:280px;margin:0 0 46px;
     line-height:1.7;min-height:44px;
   }
-  .hero p .cursor-blink{display:inline-block;width:1px;background:var(--ink-dim);margin-left:1px;animation:blink 1s step-end infinite;}
-  @keyframes blink{50%{opacity:0;}}
 
   .slide-cue{
     display:flex;flex-direction:column;align-items:center;gap:10px;
@@ -181,7 +175,6 @@
   .slide-cue .chev:nth-child(3){animation-delay:.15s;opacity:.5;}
   @keyframes bob{0%,100%{transform:rotate(45deg) translate(0,0);opacity:.4;}50%{transform:rotate(45deg) translate(4px,4px);opacity:1;}}
 
-  /* ---- content ---- */
   main{
     position:relative;z-index:2;max-width:520px;margin:0 auto;
     padding:0 24px 56px;
@@ -196,7 +189,7 @@
   }
   .masthead p{font-size:14px;color:var(--ink-dim);line-height:1.7;max-width:300px;margin:0;}
 
-  .index{border-top:1px solid var(--line);}
+  .index{border-top:1px solid var(--line);margin-bottom:48px;}
   .row{
     display:flex;align-items:center;gap:14px;
     padding:20px 2px;border-bottom:1px solid var(--line);
@@ -218,9 +211,87 @@
   .row:hover .go{opacity:1;transform:translateX(0);}
   .row:hover .label{text-shadow:0 0 12px var(--line);}
 
-  /* ---- quote/testimoni bergilir (ringkas, bukan seksyen besar) ---- */
+  /* ---- My Favorite Music ---- */
+  .music-section{margin:0 0 48px;}
+  .music-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:18px;}
+  .music-head h3{
+    font-family:'Fraunces',serif;font-weight:500;font-size:clamp(20px,5vw,26px);margin:0;
+  }
+  .music-head span{font-size:10px;letter-spacing:.2em;color:var(--ink-dim);text-transform:uppercase;}
+
+  .music-list{border-top:1px solid var(--line);margin-bottom:20px;}
+  .music-row{
+    display:flex;align-items:center;gap:14px;padding:16px 2px;
+    border-bottom:1px solid var(--line);cursor:none;position:relative;
+    transition:background .3s ease;
+  }
+  .music-row:hover{background:rgba(233,230,224,.03);}
+  .music-row.playing{background:rgba(233,230,224,.05);}
+  .music-row .track-num{
+    font-family:'Fraunces',serif;font-size:13px;color:var(--ink-dim);width:20px;flex:0 0 auto;
+  }
+  .music-row.playing .track-num{color:var(--ink);}
+  .music-row .track-icon{
+    width:16px;height:16px;flex:0 0 auto;opacity:.6;display:flex;align-items:center;justify-content:center;
+  }
+  .music-row .track-icon svg{width:100%;height:100%;}
+  .music-row.playing .track-icon{opacity:1;}
+  .music-row .track-name{flex:1;font-size:14.5px;letter-spacing:.01em;}
+  .music-row.playing .track-name{color:var(--ink);text-shadow:0 0 10px var(--line);}
+  .eq{display:flex;align-items:flex-end;gap:2px;height:12px;width:14px;flex:0 0 auto;opacity:0;}
+  .music-row.playing .eq{opacity:1;}
+  .eq span{width:2.5px;background:var(--ink);animation:eqBounce 1s ease-in-out infinite;}
+  .eq span:nth-child(1){height:40%;animation-delay:0s;}
+  .eq span:nth-child(2){height:100%;animation-delay:.15s;}
+  .eq span:nth-child(3){height:65%;animation-delay:.3s;}
+  @keyframes eqBounce{0%,100%{transform:scaleY(.4);}50%{transform:scaleY(1);}}
+
+  .player{
+    border:1px solid var(--line);border-radius:2px;padding:18px 18px 16px;
+    background:linear-gradient(160deg, rgba(255,255,255,.02), transparent);
+  }
+  .player-top{display:flex;align-items:center;gap:14px;margin-bottom:14px;}
+  .player-art{
+    width:46px;height:46px;border-radius:50%;flex:0 0 auto;
+    background:linear-gradient(160deg,#1c1c1f,#0c0c0d);
+    border:1px solid rgba(233,230,224,.3);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 14px -4px var(--glow);
+  }
+  .player-art svg{width:20px;height:20px;opacity:.6;}
+  .player-info{flex:1;min-width:0;}
+  .player-info .pname{font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .player-info .pstatus{font-size:10px;letter-spacing:.16em;color:var(--ink-dim);text-transform:uppercase;margin-top:2px;}
+
+  .controls{display:flex;align-items:center;justify-content:center;gap:22px;margin-bottom:14px;}
+  .ctrl-btn{
+    background:none;border:none;cursor:none;color:var(--ink);opacity:.75;
+    display:flex;align-items:center;justify-content:center;
+    transition:opacity .3s ease, transform .3s ease;padding:4px;
+  }
+  .ctrl-btn:hover{opacity:1;transform:scale(1.08);}
+  .ctrl-btn svg{width:18px;height:18px;}
+  .ctrl-btn.play{
+    width:42px;height:42px;border-radius:50%;border:1.5px solid rgba(233,230,224,.4);
+    box-shadow:0 0 14px -4px var(--glow);
+  }
+  .ctrl-btn.play svg{width:16px;height:16px;}
+
+  .progress-track{
+    position:relative;height:3px;background:var(--line-soft);border-radius:2px;
+    cursor:none;margin-bottom:8px;
+  }
+  .progress-fill{position:absolute;left:0;top:0;height:100%;width:0%;background:var(--glow);border-radius:2px;}
+  .progress-times{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-dim);letter-spacing:.05em;margin-bottom:14px;}
+
+  .lyrics-box{
+    text-align:center;min-height:28px;font-family:'Fraunces',serif;font-style:italic;
+    font-size:13.5px;color:var(--ink-dim);transition:opacity .35s ease;
+  }
+  .lyrics-box.show{color:var(--ink);opacity:.9;}
+
   .quote-strip{
-    margin-top:34px;padding-top:18px;border-top:1px solid var(--line-soft);
+    margin-top:0;padding-top:18px;border-top:1px solid var(--line-soft);
     text-align:center;min-height:54px;
   }
   .quote-strip p{
@@ -233,7 +304,7 @@
   footer{margin-top:40px;text-align:center;font-size:10.5px;letter-spacing:.2em;color:var(--ink-dim);text-transform:uppercase;}
 
   @media (prefers-reduced-motion:reduce){
-    .moth,#intro,#intro span,#intro .rule,.hero,.slide-cue .chev,.avatar-circle::after{animation:none !important;}
+    .moth,#intro,#intro span,#intro .rule,.hero,.slide-cue .chev,.avatar-circle::after,.eq span{animation:none !important;}
     #intro{display:none;}
     .hero{opacity:1;}
     .reveal-block{opacity:1;transform:none;}
@@ -256,7 +327,7 @@
 
 <section class="hero">
   <div class="folio">
-    <span>Kymm</span>
+    <span>Kymmmm</span>
     <span class="right">
       <span class="status" id="status"><span class="dot"></span><span class="txt">Online</span></span>
       <span class="time" id="clock"></span>
@@ -264,7 +335,7 @@
   </div>
 
   <div class="avatar-wrap">
-    <div class="avatar-bg" id="avatarBg"><span>KYMM</span></div>
+    <div class="avatar-bg" id="avatarBg"><span>KYMMMM</span></div>
     <div class="ring">
       <div class="moth p0"><svg viewBox="0 0 34 24"><g class="m-wing"><path d="M17 12 C10 -4, -4 -2, 2 12 C-4 26, 10 28, 17 12 Z" fill="none" stroke="#e9e6e0" stroke-width="0.9"/></g><g class="m-wing" style="transform:scaleX(-1) translateX(-34px);"><path d="M17 12 C10 -4, -4 -2, 2 12 C-4 26, 10 28, 17 12 Z" fill="none" stroke="#e9e6e0" stroke-width="0.9"/></g></svg></div>
       <div class="moth p1"><svg viewBox="0 0 34 24"><g class="m-wing"><path d="M17 12 C10 -4, -4 -2, 2 12 C-4 26, 10 28, 17 12 Z" fill="none" stroke="#e9e6e0" stroke-width="0.9"/></g><g class="m-wing" style="transform:scaleX(-1) translateX(-34px);"><path d="M17 12 C10 -4, -4 -2, 2 12 C-4 26, 10 28, 17 12 Z" fill="none" stroke="#e9e6e0" stroke-width="0.9"/></g></svg></div>
@@ -290,7 +361,7 @@
 
 <main id="content">
   <div class="masthead reveal-block">
-    <h2></h2>
+    <h2>Setiap perkhidmatan, satu tempat.</h2>
     <p>Pilih salah satu di bawah untuk bermula — semuanya diuruskan sendiri oleh Kym.</p>
   </div>
 
@@ -311,7 +382,56 @@
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#e9e6e0" stroke-width="1.4"><path d="M4 20l1.4-4.2A8 8 0 1 1 9 19.5L4 20Z"/><path d="M8.5 9.5c.3 2.5 2.5 4.7 5 5" stroke-linecap="round"/></svg></span>
       <span class="num">04</span><span class="label">WhatsApp</span><span class="go">buka</span>
     </a>
+    <a class="row" href="https://whatsapp.com/channel/0029Vb9QY8gKQuJGKmbRaQ0h" target="_blank" rel="noopener">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#e9e6e0" stroke-width="1.4"><path d="M4 20l1.4-4.2A8 8 0 1 1 9 19.5L4 20Z"/><path d="M8.5 9.5c.3 2.5 2.5 4.7 5 5" stroke-linecap="round"/></svg></span>
+      <span class="num">05</span><span class="label">Channel WhatsApp — KymmRetail</span><span class="go">buka</span>
+    </a>
   </nav>
+
+  <!-- ================= MY FAVORITE MUSIC ================= -->
+  <section class="music-section reveal-block">
+    <div class="music-head">
+      <h3>My Favorite Music</h3>
+      <span id="trackCount">0 lagu</span>
+    </div>
+
+    <div class="music-list" id="musicList"></div>
+
+    <div class="player">
+      <div class="player-top">
+        <div class="player-art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e9e6e0" stroke-width="1"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4" fill="#e9e6e0" stroke="none"/></svg>
+        </div>
+        <div class="player-info">
+          <div class="pname" id="nowName">Pilih lagu untuk main</div>
+          <div class="pstatus" id="nowStatus">Diam</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button class="ctrl-btn" id="prevBtn" aria-label="Sebelum">
+          <svg viewBox="0 0 24 24" fill="#e9e6e0"><path d="M6 6h2v12H6zM10 12l9-6v12z"/></svg>
+        </button>
+        <button class="ctrl-btn play" id="playBtn" aria-label="Main">
+          <svg id="playIcon" viewBox="0 0 24 24" fill="#e9e6e0"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+        <button class="ctrl-btn" id="nextBtn" aria-label="Seterusnya">
+          <svg viewBox="0 0 24 24" fill="#e9e6e0"><path d="M16 6h2v12h-2zM5 6l9 6-9 6z"/></svg>
+        </button>
+      </div>
+
+      <div class="progress-track" id="progressTrack">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="progress-times">
+        <span id="curTime">0:00</span>
+        <span id="durTime">0:00</span>
+      </div>
+
+      <div class="lyrics-box" id="lyricsBox">♪ Pilih lagu untuk mula ♪</div>
+    </div>
+  </section>
+  <!-- ================= /MY FAVORITE MUSIC ================= -->
 
   <div class="quote-strip reveal-block">
     <p id="quoteText"></p>
@@ -332,17 +452,15 @@ function tick(){
 }
 tick(); setInterval(tick,1000);
 
-/* ---- status online/offline ---- */
 function updateStatus(){
   const h = new Date().getHours();
   const el = document.getElementById('status');
-  const online = h >= 9 && h < 24; // ubah ikut waktu operasi sebenar
+  const online = h >= 9 && h < 24;
   el.querySelector('.txt').textContent = online ? 'Online' : 'Offline';
   el.classList.toggle('off', !online);
 }
 updateStatus(); setInterval(updateStatus, 60000);
 
-/* ---- scroll progress bar ---- */
 function updateProgress(){
   const h = document.documentElement;
   const scrolled = h.scrollTop;
@@ -353,7 +471,6 @@ function updateProgress(){
 addEventListener('scroll', updateProgress, {passive:true});
 updateProgress();
 
-/* ---- cursor glow trail ---- */
 (function(){
   const glow = document.getElementById('cursor-glow');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -375,7 +492,6 @@ updateProgress();
   loop();
 })();
 
-/* ---- parallax pada teks background avatar ---- */
 (function(){
   const bg = document.getElementById('avatarBg');
   const wrap = document.querySelector('.avatar-wrap');
@@ -395,7 +511,6 @@ updateProgress();
   }, {passive:true});
 })();
 
-/* ---- typewriter tagline ---- */
 (function(){
   const lines = [
     "Servis peribadi, dikendalikan terus oleh Kym.",
@@ -424,10 +539,9 @@ updateProgress();
   loop();
 })();
 
-/* ---- quote/testimoni bergilir ---- */
 (function(){
   const quotes = [
-    { t:"Fast reply", w:"Kymm" },
+     { t:"Fast reply", w:"Kymm" },
     { t:"On setiap hari", w:"kymm" },
     { t:"Trusteddd", w:"kymm" }
   ];
@@ -485,6 +599,164 @@ const io=new IntersectionObserver((entries)=>{
   });
 },{threshold:0.2});
 document.querySelectorAll('.reveal-block').forEach(el=>io.observe(el));
+
+/* ================= MUSIC PLAYER ================= */
+const songs = [
+  { name:'Teh Hijau', src:'https://files.catbox.moe/mexe04.mp3', cover:'', lyrics:[
+    {t:0,l:'♪ Intro ♪'},{t:10,l:'Lirik baris 1...'},{t:20,l:'Lirik baris 2...'},{t:30,l:'Lirik baris 3...'}
+  ]},
+  { name:'Jakarta Hari Ini', src:'https://files.catbox.moe/4mcmzo.mp3', cover:'', lyrics:[
+    {t:0,l:'♪ Intro ♪'},{t:10,l:'Lirik baris 1...'},{t:20,l:'Lirik baris 2...'}
+  ]},
+  { name:'Sedia Payung Sebelum Hujan', src:'https://files.catbox.moe/osiw1t.mp3', cover:'', lyrics:[
+    {t:0,l:'♪ Intro ♪'},{t:10,l:'Lirik baris 1...'},{t:20,l:'Lirik baris 2...'}
+  ]},
+  { name:'Last Friday Night', src:'https://files.catbox.moe/qi5zkd.mp3', cover:'', lyrics:[
+    {t:0,l:'♪ Intro ♪'},{t:10,l:'Lirik baris 1...'},{t:20,l:'Lirik baris 2...'}
+  ]},
+];
+
+(function(){
+  const listEl = document.getElementById('musicList');
+  const countEl = document.getElementById('trackCount');
+  const nowName = document.getElementById('nowName');
+  const nowStatus = document.getElementById('nowStatus');
+  const playBtn = document.getElementById('playBtn');
+  const playIcon = document.getElementById('playIcon');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const progressTrack = document.getElementById('progressTrack');
+  const progressFill = document.getElementById('progressFill');
+  const curTimeEl = document.getElementById('curTime');
+  const durTimeEl = document.getElementById('durTime');
+  const lyricsBox = document.getElementById('lyricsBox');
+
+  const audio = new Audio();
+  let currentIndex = -1;
+  let isPlaying = false;
+
+  countEl.textContent = songs.length + ' lagu';
+
+  function fmtTime(sec){
+    if(!isFinite(sec) || sec < 0) sec = 0;
+    const m = Math.floor(sec/60);
+    const s = Math.floor(sec%60);
+    return m + ':' + pad(s);
+  }
+
+  function renderList(){
+    listEl.innerHTML = '';
+    songs.forEach((song, i)=>{
+      const row = document.createElement('div');
+      row.className = 'music-row';
+      row.dataset.index = i;
+      row.innerHTML = `
+        <span class="track-num">${pad(i+1)}</span>
+        <span class="track-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#e9e6e0" stroke-width="1.3"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </span>
+        <span class="track-name">${song.name}</span>
+        <span class="eq"><span></span><span></span><span></span></span>
+      `;
+      row.addEventListener('click', ()=>{
+        if(currentIndex === i){
+          togglePlay();
+        } else {
+          loadSong(i);
+          audio.play();
+        }
+      });
+      listEl.appendChild(row);
+    });
+  }
+
+  function updateActiveRow(){
+    document.querySelectorAll('.music-row').forEach(r=>{
+      r.classList.toggle('playing', Number(r.dataset.index) === currentIndex);
+    });
+  }
+
+  function loadSong(i){
+    currentIndex = i;
+    const song = songs[i];
+    audio.src = song.src;
+    nowName.textContent = song.name;
+    nowStatus.textContent = 'Memuatkan...';
+    lyricsBox.textContent = song.lyrics[0] ? song.lyrics[0].l : '';
+    lyricsBox.classList.remove('show');
+    updateActiveRow();
+    progressFill.style.width = '0%';
+    curTimeEl.textContent = '0:00';
+    durTimeEl.textContent = '0:00';
+  }
+
+  function togglePlay(){
+    if(currentIndex === -1){
+      loadSong(0);
+      audio.play();
+      return;
+    }
+    if(isPlaying){ audio.pause(); } else { audio.play(); }
+  }
+
+  function nextSong(){
+    const ni = (currentIndex + 1) % songs.length;
+    loadSong(ni);
+    audio.play();
+  }
+  function prevSong(){
+    const pi = (currentIndex - 1 + songs.length) % songs.length;
+    loadSong(pi);
+    audio.play();
+  }
+
+  audio.addEventListener('play', ()=>{
+    isPlaying = true;
+    playIcon.innerHTML = '<path d="M6 5h4v14H6zM14 5h4v14h-4z"/>';
+    nowStatus.textContent = 'Sedang main';
+    updateActiveRow();
+  });
+  audio.addEventListener('pause', ()=>{
+    isPlaying = false;
+    playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>';
+    nowStatus.textContent = 'Dijeda';
+  });
+  audio.addEventListener('loadedmetadata', ()=>{
+    durTimeEl.textContent = fmtTime(audio.duration);
+  });
+  audio.addEventListener('timeupdate', ()=>{
+    const pct = audio.duration ? (audio.currentTime/audio.duration)*100 : 0;
+    progressFill.style.width = pct + '%';
+    curTimeEl.textContent = fmtTime(audio.currentTime);
+    updateLyrics(audio.currentTime);
+  });
+  audio.addEventListener('ended', nextSong);
+
+  function updateLyrics(time){
+    if(currentIndex === -1) return;
+    const lyrics = songs[currentIndex].lyrics;
+    let active = lyrics[0];
+    for(const line of lyrics){
+      if(time >= line.t) active = line;
+    }
+    lyricsBox.classList.remove('show');
+    lyricsBox.textContent = active.l;
+    requestAnimationFrame(()=> lyricsBox.classList.add('show'));
+  }
+
+  progressTrack.addEventListener('click', (e)=>{
+    if(currentIndex === -1 || !audio.duration) return;
+    const rect = progressTrack.getBoundingClientRect();
+    const pct = (e.clientX - rect.left) / rect.width;
+    audio.currentTime = pct * audio.duration;
+  });
+
+  playBtn.addEventListener('click', togglePlay);
+  nextBtn.addEventListener('click', nextSong);
+  prevBtn.addEventListener('click', prevSong);
+
+  renderList();
+})();
 </script>
 </body>
 </html>
